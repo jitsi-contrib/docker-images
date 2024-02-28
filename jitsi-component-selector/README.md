@@ -2,14 +2,24 @@
 
 ## Run
 
+Assumed that the host IP is `172.17.17.1`.
+
+Run the following in this folder but in a different shell to simulate ASAP key
+server.
+
 ```bash
-# to simulate ASAP key server
 python3 -m http.server -d ../files/asap 8000
+```
+
+```bash
+docker run -d -p 6379:6379 redis
 
 docker run \
   -p 8015:8015 \
   -e REDIS_HOST=172.17.17.1 \
-  -e PROTECTED_SIGNAL_API=false \
+  -e PROTECTED_SIGNAL_API=true \
+  -e SYSTEM_ASAP_BASE_URL_MAPPINGS='[{"kid": "^jitsi/(.*)$", "baseUrl": "http://172.17.17.1:8000/server"}]' \
+  -e SIGNAL_ASAP_BASE_URL_MAPPINGS='[{"kid": "^jitsi/(.*)$", "baseUrl": "http://172.17.17.1:8000/signal"}]' \
   jitsi-component-selector
 ```
 
