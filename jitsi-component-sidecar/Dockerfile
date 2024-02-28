@@ -22,3 +22,7 @@ FROM node:20
 WORKDIR /app
 
 COPY --from=builder /app/repo/bundle/app.js /app/app.js
+
+USER node
+
+CMD ["nodejs", "/app/app.js"]
