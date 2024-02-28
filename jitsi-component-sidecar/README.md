@@ -13,3 +13,11 @@ docker run \
   -v ${PWD}/../files/asap/asap.key:/app/asap.key \
   jitsi-component-sidecar
 ```
+
+## Environment variables
+
+See
+[env.example](https://github.com/jitsi/jitsi-component-sidecar/blob/main/env.example)
+and
+[config.ts](https://github.com/jitsi/jitsi-component-sidecar/blob/main/src/config/config.ts)
+for the list.
