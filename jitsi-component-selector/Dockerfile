@@ -25,5 +25,6 @@ WORKDIR /app
 COPY --from=builder /app/repo/bundle /app
 
 USER node
+EXPOSE 8015
 
 CMD ["nodejs", "/app/app.js"]
