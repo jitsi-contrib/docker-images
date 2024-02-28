@@ -12,7 +12,8 @@ WORKDIR /app
 RUN \
   git clone -b ${PROJECT_BRANCH} ${PROJECT_REPO} repo && \
   cd repo && git checkout ${PROJECT_CHECKOUT} && \
-  npm install && npm run build
+  npm install && npm run build && \
+  mkdir -p /app/repo/bundle/src && mv /app/repo/src/lua /app/repo/bundle/src/
 
 # ------------------------------------------------------------------------------
 # prod
@@ -21,7 +22,7 @@ FROM node:20
 
 WORKDIR /app
 
-COPY --from=builder /app/repo/bundle/app.js /app/app.js
+COPY --from=builder /app/repo/bundle /app
 
 USER node
 
