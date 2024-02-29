@@ -11,7 +11,6 @@ on:
 env:
   CONTEXT: jitsi-component-selector
   REGISTRY: ghcr.io
-  IMAGE_NAME: "${{ github.repository }}/${{ env.CONTEXT }}"
 
 jobs:
   build:
@@ -25,22 +24,19 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-
     - name: Custom metadata
       run: |
         echo "BUILD_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
         echo ${{ env.REGISTRY }}
-        echo ${{ env.IMAGE_NAME }}
-        echo ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        echo ${{ env.CONTEXT }}
+        echo ${{ env.REGISTRY }}/${{ github.repository }}/${{ CONTEXT }}
 
     - name: Metadata
       uses: docker/metadata-action@v5
       id: meta
       with:
         images: |
-          ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          ${{ env.REGISTRY }}/${{ github.repository }}/${{ CONTEXT }}
         tags: |
           type=raw,value=latest
           type=raw,value=v${{ env.BUILD_DATE }}
@@ -55,7 +51,7 @@ jobs:
     #- name: Build and push
     #  uses: docker/build-push-action@v5
     #  with:
-    #    context: "{{defaultContext}}:${{ env.CONTEXT }}"
+    #    context: ./${{ env.CONTEXT }}
     #    push: true
     #    tags: ${{ steps.meta.outputs.tags }}
     #    labels: ${{ steps.meta.outputs.labels }}
