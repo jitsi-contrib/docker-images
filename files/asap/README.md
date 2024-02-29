@@ -1,4 +1,4 @@
-# ASAP Key
+# ASAP
 
 ## Generating keys
 
@@ -7,7 +7,7 @@ openssl genrsa -out asap.key 4096
 openssl rsa -in asap.key -pubout -outform PEM -out asap.pem
 ```
 
-## Simulating ASAP key server
+## Simulating ASAP server
 
 ```bash
 mkdir server
