@@ -2,7 +2,7 @@
 
 ## Run
 
-- This service needs `asap.key`. See [asap](files/asap) for more details.
+- This service needs `asap.key`. See [asap](/files/asap) for more details.
 - Assumed that `jitsi-component-selector`'s IP address is `172.17.17.1`.
 
 Run the following commands in this folder because there is a reference to

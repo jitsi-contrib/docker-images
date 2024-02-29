@@ -3,7 +3,8 @@
 ## Run
 
 - This service needs `Redis`.
-- This service needs `ASAP key server`. See [asap](files/asap) for more details.
+- This service needs `ASAP key server`. See [asap](/files/asap) for more
+  details.
 - Assumed that the host IP is `172.17.17.1`.
 
 Run the following command in this folder but in a different shell to simulate
