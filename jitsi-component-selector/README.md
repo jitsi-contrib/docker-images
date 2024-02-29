@@ -1,5 +1,12 @@
 # jitsi-component-selector
 
+## Clone
+
+```bash
+git clone https://github.com/jitsi-contrib/docker-images.git
+cd docker-images/jitsi-component-selector
+```
+
 ## Run
 
 - This service needs `Redis`.

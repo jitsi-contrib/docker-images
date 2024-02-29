@@ -1,5 +1,12 @@
 # jitsi-component-sidecar
 
+## Clone
+
+```bash
+git clone https://github.com/jitsi-contrib/docker-images.git
+cd docker-images/jitsi-component-sidecar
+```
+
 ## Run
 
 - This service needs `asap.key`. See [ASAP](/files/asap) for more details.
