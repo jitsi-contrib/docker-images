@@ -2,7 +2,11 @@
 
 ## Run
 
+- This service needs `asap.key`.
 - Assumed that `jitsi-component-selector`'s IP address is `172.17.17.1`.
+
+Run the following commands in this folder because there is a reference to
+`asap.key` file:
 
 ```bash
 docker pull ghcr.io/jitsi-contrib/docker-images/jitsi-component-sidecar:latest
