@@ -11,7 +11,7 @@ on:
 env:
   CONTEXT: jitsi-component-selector
   REGISTRY: ghcr.io
-  IMAGE_NAME: "${{ github.repository }}/${{ CONTEXT }}"
+  IMAGE_NAME: "${{ github.repository }}/${{ env.CONTEXT }}"
 
 jobs:
   build:
