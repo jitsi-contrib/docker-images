@@ -5,12 +5,14 @@
 - This service needs `Redis` and `ASAP key server`.
 - Assumed that the host IP is `172.17.17.1`.
 
-Run the following in this folder but in a different shell to simulate ASAP key
-server.
+Run the following command in this folder but in a different shell to simulate
+ASAP key server.
 
 ```bash
 python3 -m http.server -d ../files/asap 8000
 ```
+
+Pull the image and run:
 
 ```bash
 docker run -d -p 6379:6379 redis
