@@ -9,8 +9,9 @@ on:
       - ".github/workflows/jitsi-component-selector.yml"
 
 env:
+  CONTEXT: jitsi-component-selector
   REGISTRY: ghcr.io
-  IMAGE_NAME: "${{ github.repository }}/jitsi-component-selector"
+  IMAGE_NAME: "${{ github.repository }}/${{ CONTEXT }}"
 
 jobs:
   build:
@@ -23,6 +24,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
     - name: Custom metadata
       run: |
@@ -47,3 +51,11 @@ jobs:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
+
+    #- name: Build and push
+    #  uses: docker/build-push-action@v5
+    #  with:
+    #    context: "{{defaultContext}}:${{ env.CONTEXT }}"
+    #    push: true
+    #    tags: ${{ steps.meta.outputs.tags }}
+    #    labels: ${{ steps.meta.outputs.labels }}
