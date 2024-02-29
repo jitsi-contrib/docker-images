@@ -23,9 +23,6 @@ jobs:
     - name: Custom metadata
       run: |
         echo "BUILD_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
-        echo ${{ env.REGISTRY }}
-        echo ${{ env.CONTEXT }}
-        echo ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.CONTEXT }}
 
     - name: Metadata
       uses: docker/metadata-action@v5
