@@ -5,6 +5,8 @@
 Assumed that `jitsi-component-selector`'s IP address is `172.17.17.1`.
 
 ```bash
+docker image build -t jitsi-component-sidecar .
+
 docker run \
   -e COMPONENT_TYPE='SIP-JIBRI' \
   -e ENABLE_STOP_INSTANCE=true \
