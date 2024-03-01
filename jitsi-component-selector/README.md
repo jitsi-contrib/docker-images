@@ -63,7 +63,7 @@ for the list.
 
 ### Example scripts
 
-See [/scripts/jitsi-component-selector](/scripts/jitsi-component-selector).
+See [scripts](/scripts/jitsi-component-selector).
 
 ## Sponsors
 
