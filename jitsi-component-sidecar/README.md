@@ -34,9 +34,9 @@ docker run \
 docker image build -t jitsi-component-sidecar .
 
 docker run \
-  -e COMPONENT_TYPE='SIP-JIBRI' \
+  -e COMPONENT_TYPE=SIP-JIBRI \
   -e ENABLE_STOP_INSTANCE=true \
-  -e WS_SERVER_URL='ws://172.17.17.1:8015' \
+  -e WS_SERVER_URL=ws://172.17.17.1:8015 \
   -e ASAP_SIGNING_KEY_FILE=/app/asap.key \
   -v ${PWD}/../files/asap/asap.key:/app/asap.key \
   jitsi-component-sidecar
@@ -49,3 +49,25 @@ See
 and
 [config.ts](https://github.com/jitsi/jitsi-component-sidecar/blob/main/src/config/config.ts)
 for the list.
+
+## Notes
+
+### External Jibri
+
+Use `jitsi-component-sidecar` as a sidecar container if your environment allows
+this usage. So, `jitsi-component-sidecar` can access `Jibri`'s API through
+`localhost`. No need to set endpoints in this case.
+
+If `Jibri`'s API is not accessible through `localhost`, set the related
+environment variables to point to endpoints. Assumed that `Jibri`'s IP is
+`172.18.18.204` in the following example:
+
+```bash
+docker run \
+   -e STATS_RETRIEVE_URL=http://172.18.18.204:2222/jibri/api/v1.0/health \
+   -e START_INSTANCE_URL=http://172.18.18.204:2222/jibri/api/v1.0/startService \
+   -e STOP_INSTANCE_URL=http://172.18.18.204:2222/jibri/api/v1.0/stopService \
+   ...
+   ...
+   jitsi-component-sidecar
+```
