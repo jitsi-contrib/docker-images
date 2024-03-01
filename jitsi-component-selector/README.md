@@ -61,6 +61,6 @@ for the list.
 
 ## Notes
 
-## Example scripts
+### Example scripts
 
 See [/scripts/jitsi-component-selector](/scripts/jitsi-component-selector).
