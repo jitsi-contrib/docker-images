@@ -71,3 +71,7 @@ docker run \
    ...
    jitsi-component-sidecar
 ```
+
+## Sponsors
+
+[![Nordeck](/images/nordeck.png)](https://nordeck.net/)

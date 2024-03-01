@@ -64,3 +64,7 @@ for the list.
 ### Example scripts
 
 See [/scripts/jitsi-component-selector](/scripts/jitsi-component-selector).
+
+## Sponsors
+
+[![Nordeck](/images/nordeck.png)](https://nordeck.net/)
