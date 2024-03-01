@@ -2,6 +2,8 @@
 set -e
 
 # -----------------------------------------------------------------------------
+# Stop SIP-Jibri session.
+#
 # Packages:
 #   apt-get install curl
 #
