@@ -58,3 +58,9 @@ See
 and
 [config.ts](https://github.com/jitsi/jitsi-component-selector/blob/main/src/config/config.ts)
 for the list.
+
+## Notes
+
+## Example scripts
+
+See [/scripts/jitsi-component-selector](/scripts/jitsi-component-selector).
