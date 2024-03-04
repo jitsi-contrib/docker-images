@@ -1,0 +1,15 @@
+#!/bin/bash
+
+unclutter -root -idle 0.1 &
+
+DOMAIN=$(grep 'xmpp-domain' /etc/jitsi/jibri/jibri.conf | cut -d'"' -f2)
+if [[ -n "$PUBLIC_URL" ]]; then
+    FQDN="$PUBLIC_URL"
+elif [[ -n "$DOMAIN" ]]; then
+    FQDN="https://$DOMAIN"
+else
+    FQDN="about:blank"
+fi
+
+[[ "$DISPLAY" = ":0" ]] && \
+    timeout 3 /usr/bin/chromium --ignore-certificate-errors $FQDN &
