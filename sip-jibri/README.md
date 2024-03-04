@@ -10,6 +10,7 @@ docker run \
   -e XMPP_SERVER='jitsi.mydomain.corp' \
   -e JIBRI_XMPP_PASSWORD='jibriXmppPassword' \
   -e SIP_JIBRI_XMPP_PASSWORD='sipjibriXmppPassword' \
+  -e CHROMIUM_FLAGS='--ignore-certificate-errors,--use-fake-ui-for-media-stream,--start-maximized,--kiosk,--enabled,--autoplay-policy=no-user-gesture-required'
   -v /tmp/config:/config \
   ghcr.io/jitsi-contrib/docker-images/sip-jibri
 ```
@@ -27,6 +28,7 @@ docker run \
   -e XMPP_SERVER='jitsi.mydomain.corp' \
   -e JIBRI_XMPP_PASSWORD='jibriXmppPassword' \
   -e SIP_JIBRI_XMPP_PASSWORD='sipjibriXmppPassword' \
+  -e CHROMIUM_FLAGS='--ignore-certificate-errors,--use-fake-ui-for-media-stream,--start-maximized,--kiosk,--enabled,--autoplay-policy=no-user-gesture-required'
   -v /tmp/config:/config \
   sip-jibri
 ```
