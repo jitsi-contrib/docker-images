@@ -33,6 +33,12 @@ COPY --from=builder /src/pjsua /usr/local/bin/pjsua
 COPY rootfs/ /
 
 RUN \
+  dpkgArch="$(dpkg --print-architecture)" && \
+  case "${dpkgArch##*-}" in \
+    "amd64") TPL_ARCH=amd64; S6_ARCH=amd64 ;; \
+    "arm64") TPL_ARCH=arm64; S6_ARCH=aarch64 ;; \
+    *) echo "unsupported architecture"; exit 1 ;; \
+  esac && \
   export LC_ALL=C && \
   export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
@@ -60,12 +66,6 @@ RUN \
   chmod 755 /usr/local/bin/pjsua && \
   chmod 755 /home/jibri/.icewm/startup && \
 \
-  dpkgArch="$(dpkg --print-architecture)" && \
-  case "${dpkgArch##*-}" in \
-    "amd64") TPL_ARCH=amd64; S6_ARCH=amd64 ;; \
-    "arm64") TPL_ARCH=arm64; S6_ARCH=aarch64 ;; \
-    *) echo "unsupported architecture"; exit 1 ;; \
-  esac && \
   wget -qO /usr/bin/tpl https://github.com/jitsi/tpl/releases/download/v1.1.1/tpl-linux-${TPL_ARCH} && \
   chmod 755 /usr/bin/tpl && \
   mkdir /tmp/s6 && \
@@ -81,3 +81,5 @@ RUN \
   rm -rf /tmp/s6
 
 VOLUME /config
+
+ENTRYPOINT [ "/init" ]
