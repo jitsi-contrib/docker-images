@@ -11,6 +11,10 @@ docker run \
   -e JIBRI_XMPP_PASSWORD=jibriXmppPassword \
   -e SIP_JIBRI_XMPP_PASSWORD=sipjibriXmppPassword \
   -e CHROMIUM_FLAGS='--use-fake-ui-for-media-stream,--start-maximized,--kiosk,--enabled,--autoplay-policy=no-user-gesture-required' \
+  --cap-add=SYS_ADMIN \
+  --device=/dev/snd:/dev/snd \
+  --device=/dev/video10:/dev/video0 \
+  --device=/dev/video11:/dev/video1 \
   -v /tmp/config:/config \
   ghcr.io/jitsi-contrib/docker-images/sip-jibri
 ```
@@ -29,6 +33,10 @@ docker run \
   -e JIBRI_XMPP_PASSWORD=jibriXmppPassword \
   -e SIP_JIBRI_XMPP_PASSWORD=sipjibriXmppPassword \
   -e CHROMIUM_FLAGS='--use-fake-ui-for-media-stream,--start-maximized,--kiosk,--enabled,--autoplay-policy=no-user-gesture-required' \
+  --cap-add=SYS_ADMIN \
+  --device=/dev/snd:/dev/snd \
+  --device=/dev/video10:/dev/video0 \
+  --device=/dev/video11:/dev/video1 \
   -v /tmp/config:/config \
   sip-jibri
 ```
@@ -53,6 +61,10 @@ docker run \
   -e XMPP_AUTH_DOMAIN=auth.jitsi.mydomain.corp \
   -e XMPP_MUC_DOMAIN=conference.jitsi.mydomain.corp \
   -e XMPP_INTERNAL_MUC_DOMAIN=internal.auth.jitsi.mydomain.corp \
+  --cap-add=SYS_ADMIN \
+  --device=/dev/snd:/dev/snd \
+  --device=/dev/video10:/dev/video0 \
+  --device=/dev/video11:/dev/video1 \
   -v /tmp/config:/config \
   ghcr.io/jitsi-contrib/docker-images/sip-jibri
 ```
