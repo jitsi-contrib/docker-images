@@ -27,6 +27,8 @@ RUN \
 # ------------------------------------------------------------------------------
 FROM debian:bookworm-slim
 
+ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+
 COPY --from=builder /src/pjsua /usr/local/bin/pjsua
 COPY rootfs/ /
 
@@ -57,6 +59,16 @@ RUN \
   cp -arp /stage0/extras/icewm/* /home/jibri/.icewm/ && \
   chmod 755 /usr/local/bin/pjsua && \
   chmod 755 /home/jibri/.icewm/startup && \
+\
+  dpkgArch="$(dpkg --print-architecture)" && \
+  case "${dpkgArch##*-}" in \
+    "amd64") TPL_ARCH=amd64; S6_ARCH=amd64 ;; \
+    "arm64") TPL_ARCH=arm64; S6_ARCH=aarch64 ;; \
+    *) echo "unsupported architecture"; exit 1 ;; \
+  esac && \
+  wget -qO /usr/bin/tpl https://github.com/jitsi/tpl/releases/download/v1.1.1/tpl-linux-${TPL_ARCH} && \
+  wget -qO - https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-${S6_ARCH}.tar.gz | \
+    tar xfz - -C / && \
 \
   apt-get clean && \
   rm -rf /var/lib/apt/lists && \
