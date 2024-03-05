@@ -36,13 +36,13 @@ RUN \
   export LC_ALL=C && \
   export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
-  apt-get install -y --install-recommends \
-    ffmpeg && \
   apt-get install -y --no-install-recommends \
-    ca-certificates gnupg wget \
+    apt-utils ca-certificates gnupg wget \
     dbus dbus-x11 fonts-noto jq libgl1-mesa-dri libv4l-0 rtkit unclutter \
     openjdk-17-jre-headless \
     chromium chromium-driver chromium-sandbox && \
+  apt-get install -y --install-recommends \
+    ffmpeg && \
   apt-get -y purge upower && \
 \
   cp /stage0/extras/jitsi-stable.list /etc/apt/sources.list.d/ && \
@@ -67,11 +67,17 @@ RUN \
     *) echo "unsupported architecture"; exit 1 ;; \
   esac && \
   wget -qO /usr/bin/tpl https://github.com/jitsi/tpl/releases/download/v1.1.1/tpl-linux-${TPL_ARCH} && \
-  wget -qO - https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-${S6_ARCH}.tar.gz | \
-    tar xfz - -C / && \
+  chmod 755 /usr/bin/tpl && \
+  mkdir /tmp/s6 && \
+  wget -qO /tmp/s6/s6-overlay-${S6_ARCH}.tar.gz \
+    https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-${S6_ARCH}.tar.gz && \
+  cd /tmp/s6/ && tar zxf s6-overlay-${S6_ARCH}.tar.gz && \
+  mv bin/* /bin/ && rm -rf bin usr/bin/execlineb s6-overlay-*.tar.gz && \
+  cp -arp /tmp/s6/* / && \ 
 \
   apt-get clean && \
   rm -rf /var/lib/apt/lists && \
-  rm -rf /stage0
+  rm -rf /stage0 && \
+  rm -rf /tmp/s6
 
 VOLUME /config
