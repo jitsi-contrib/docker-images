@@ -2,6 +2,9 @@
 
 ## Run
 
+- Assumed that `snd_aloop` is loaded and configured correctly on host.
+- Assumed that `v4l2loopback` is loaded and configured correctly on host.
+
 ```bash
 docker pull ghcr.io/jitsi-contrib/docker-images/sip-jibri:latest
 
@@ -76,6 +79,38 @@ If `Jitsi` has not a trusted certificate, add `--ignore-certificate-errors` into
 
 ```
 -e CHROMIUM_FLAGS='--ignore-certificate-errors,--use-fake-ui-for-media-stream,--start-maximized,--kiosk,--enabled,--autoplay-policy=no-user-gesture-required'
+```
+
+### snd-aloop
+
+Two ALSA loopback devices should be available for each `sip-jibri`.
+
+An example `/etc/modprobe.d/alsa-loopback.conf`:
+
+```
+options snd-aloop enable=1,1 index=2,3
+```
+
+You should also load the kernel module:
+
+```bash
+modprobe snd-aloop
+```
+
+### v4l2loopback
+
+Two `v4l2loopback` devices should be available for each `sip-jibri`.
+
+An example `/etc/modprobe.d/v4l2loopback.conf`:
+
+```
+options v4l2loopback video_nr=10,11 exclusive_caps=1,1
+```
+
+You should also load the kernel module:
+
+```bash
+modprobe v4l2loopback
 ```
 
 ## Sponsors
