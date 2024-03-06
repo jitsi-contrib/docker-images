@@ -48,6 +48,38 @@ docker run \
 
 ## Notes
 
+### snd-aloop
+
+Two ALSA loopback devices should be available for each `sip-jibri`.
+
+An example `/etc/modprobe.d/alsa-loopback.conf`:
+
+```
+options snd-aloop enable=1,1 index=2,3
+```
+
+You should also load the kernel module:
+
+```bash
+modprobe snd-aloop
+```
+
+### v4l2loopback
+
+Two `v4l2loopback` devices should be available for each `sip-jibri`.
+
+An example `/etc/modprobe.d/v4l2loopback.conf`:
+
+```
+options v4l2loopback video_nr=10,11 exclusive_caps=1,1
+```
+
+You should also load the kernel module:
+
+```bash
+modprobe v4l2loopback
+```
+
 ### Running with a standalone Jitsi
 
 If `Jitsi` is not running as a container, extra parameters should be set for
@@ -84,36 +116,17 @@ If `Jitsi` has not a trusted certificate, add `--ignore-certificate-errors` into
 -e CHROMIUM_FLAGS='--ignore-certificate-errors,--use-fake-ui-for-media-stream,--start-maximized,--kiosk,--enabled,--autoplay-policy=no-user-gesture-required'
 ```
 
-### snd-aloop
+### SIP parameters
 
-Two ALSA loopback devices should be available for each `sip-jibri`.
-
-An example `/etc/modprobe.d/alsa-loopback.conf`:
-
-```
-options snd-aloop enable=1,1 index=2,3
-```
-
-You should also load the kernel module:
+If you need to set a SIP account for `sip-jibri`, set the following environment
+variables:
 
 ```bash
-modprobe snd-aloop
-```
-
-### v4l2loopback
-
-Two `v4l2loopback` devices should be available for each `sip-jibri`.
-
-An example `/etc/modprobe.d/v4l2loopback.conf`:
-
-```
-options v4l2loopback video_nr=10,11 exclusive_caps=1,1
-```
-
-You should also load the kernel module:
-
-```bash
-modprobe v4l2loopback
+  -e SIP_ID='jitsi <sip:1001@sip.mydomain.corp>' \
+  -e SIP_REGISTRAR='sip:sip.mydomain.corp' \
+  -e SIP_REALM='*' \
+  -e SIP_USERNAME=1001 \
+  -e SIP_PASSWORD=mysippassword \
 ```
 
 ## Sponsors
