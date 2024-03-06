@@ -46,6 +46,10 @@ docker run \
   sip-jibri
 ```
 
+## Environment variables
+
+Check [templates](rootfs/defaults) for possible environment variables.
+
 ## Notes
 
 ### snd-aloop
