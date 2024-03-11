@@ -122,8 +122,8 @@ If `Jitsi` has not a trusted certificate, add `--ignore-certificate-errors` into
 
 ### SIP parameters
 
-If you need to set a SIP account for `sip-jibri`, set the following environment
-variables:
+If you need to set a permanent SIP account for `sip-jibri`, set the following
+environment variables:
 
 ```bash
 -e SIP_ID='jitsi <sip:1001@sip.mydomain.corp>' \
@@ -132,6 +132,9 @@ variables:
 -e SIP_USERNAME=1001 \
 -e SIP_PASSWORD=mysippassword \
 ```
+
+If SIP credentials are set dynamically in API requests, no need to set these
+parameters.
 
 ## Sponsors
 
