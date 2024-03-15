@@ -16,7 +16,7 @@ RUN \
     build-essential git ca-certificates \
     libv4l-dev libsdl2-dev libavcodec-dev libavdevice-dev libavfilter-dev \
     libavformat-dev libavutil-dev libswscale-dev libasound2-dev libopus-dev \
-    libvpx-dev && \
+    libvpx-dev libssl-dev && \
 \
   git clone -b $PROJECT_BRANCH $PROJECT_REPO pjproject && \
   cd pjproject && ./configure && make dep && make && \
