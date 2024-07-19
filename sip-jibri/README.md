@@ -95,8 +95,9 @@ docker run \
   -e XMPP_SERVER=jitsi.mydomain.corp \
   -e JIBRI_XMPP_PASSWORD=jibriXmppPassword \
   -e SIP_JIBRI_XMPP_PASSWORD=sipjibriXmppPassword \
-  -e CHROMIUM_FLAGS='--use-fake-ui-for-media-stream,--start-maximized,--kiosk,--enabled,--autoplay-policy=no-user-gesture-required' \
+  -e IGNORE_CERTIFICATE_ERRORS='true' \
   -e SIP_JIBRI_BREWERY_MUC=SipBrewery \
+  -e SIP_JIBRI_BREWERY_MUC_DUMMY=SipBreweryDummy \
   -e XMPP_DOMAIN=jitsi.mydomain.corp \
   -e XMPP_SIP_DOMAIN=sip.jitsi.mydomain.corp \
   -e XMPP_AUTH_DOMAIN=auth.jitsi.mydomain.corp \
@@ -113,11 +114,10 @@ docker run \
 
 ### Self-signed certificate
 
-If `Jitsi` has not a trusted certificate, add `--ignore-certificate-errors` into
-`CHROMIUM_FLAGS`:
+If `Jitsi` has not a trusted certificate, set `IGNORE_CERTIFICATE_ERRORS`:
 
 ```
--e CHROMIUM_FLAGS='--ignore-certificate-errors,--use-fake-ui-for-media-stream,--start-maximized,--kiosk,--enabled,--autoplay-policy=no-user-gesture-required'
+-e IGNORE_CERTIFICATE_ERRORS='true'
 ```
 
 ### SIP parameters
