@@ -37,8 +37,8 @@ COPY rootfs/ /
 RUN \
   dpkgArch="$(dpkg --print-architecture)" && \
   case "${dpkgArch##*-}" in \
-    "amd64") TPL_ARCH=amd64; S6_ARCH=amd64 ;; \
-    "arm64") TPL_ARCH=arm64; S6_ARCH=aarch64 ;; \
+    "amd64") TPL_ARCH=amd64; S6_ARCH=amd64; SC_ARCH=x86_64 ;; \
+    "arm64") TPL_ARCH=arm64; S6_ARCH=aarch64; SC_ARCH=aarch64 ;; \
     *) echo "unsupported architecture"; exit 1 ;; \
   esac && \
   export LC_ALL=C && \
@@ -76,6 +76,10 @@ RUN \
   cd /tmp/s6/ && tar zxf s6-overlay-${S6_ARCH}.tar.gz && \
   mv bin/* /bin/ && rm -rf bin usr/bin/execlineb s6-overlay-*.tar.gz && \
   cp -arp /tmp/s6/* / && \ 
+\
+  wget -qO /usr/bin/shm-check \
+    https://github.com/saghul/shm-check/releases/download/v1.0.0/shm-check-${SC_ARCH} && \
+  chmod +x /usr/bin/shm-check && \
 \
   apt-get clean && \
   rm -rf /var/lib/apt/lists && \
