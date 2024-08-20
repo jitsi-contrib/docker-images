@@ -3,8 +3,8 @@
 # ------------------------------------------------------------------------------
 FROM debian:trixie-slim as builder
 
-ARG PROJECT_REPO=https://github.com/jitsi/pjproject
-ARG PROJECT_BRANCH=jibri-2.13-dev1
+ARG PJPROJECT_ARCHIVE=https://github.com/jitsi-contrib/pjproject/archive/refs/tags
+ARG PJPROJECT_VERSION=v20240818
 
 WORKDIR /src
 
@@ -18,8 +18,10 @@ RUN \
     libavformat-dev libavutil-dev libswscale-dev libasound2-dev libopus-dev \
     libvpx-dev libssl-dev && \
 \
-  git clone -b $PROJECT_BRANCH $PROJECT_REPO pjproject && \
-  cd pjproject && ./configure && make dep && make && \
+  wget $PJPROJECT_ARCHIVE/$PJPROJECT_VERSION.tar.gz && \
+  tar zxf $PJPROJECT_VERSION.tar.gz && \
+  cd pjproject-$(echo $PJPROJECT_VERSION | tr -d 'v') && \
+  ./configure && make dep && make && \
   cp pjsip-apps/bin/pjsua-x86_64-unknown-linux-gnu /src/pjsua
 
 # ------------------------------------------------------------------------------
