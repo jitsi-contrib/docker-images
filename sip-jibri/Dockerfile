@@ -46,7 +46,8 @@ RUN \
   apt-get update && \
   apt-get install -y --no-install-recommends \
     apt-utils ca-certificates gnupg wget \
-    dbus dbus-x11 fonts-noto jq libgl1-mesa-dri libv4l-0 rtkit unclutter \
+    dbus dbus-x11 fonts-noto jq libgl1-mesa-dri libv4l-0 libcap2-bin \
+    rtkit unclutter \
     openjdk-17-jre-headless \
     chromium chromium-driver chromium-sandbox && \
   apt-get install -y --install-recommends \
