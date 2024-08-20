@@ -18,7 +18,7 @@ RUN \
     libavformat-dev libavutil-dev libswscale-dev libasound2-dev libopus-dev \
     libvpx-dev libssl-dev && \
 \
-  wget $PJPROJECT_ARCHIVE/$PJPROJECT_VERSION.tar.gz && \
+  wget -q $PJPROJECT_ARCHIVE/$PJPROJECT_VERSION.tar.gz && \
   tar zxf $PJPROJECT_VERSION.tar.gz && \
   cd pjproject-$(echo $PJPROJECT_VERSION | tr -d 'v') && \
   ./configure && make dep && make && \
