@@ -68,7 +68,7 @@ RUN \
   chmod 755 /usr/local/bin/pjsua && \
   chmod 755 /home/jibri/.icewm/startup && \
 \
-  wget -qO /usr/bin/tpl https://github.com/jitsi/tpl/releases/download/v1.1.1/tpl-linux-${TPL_ARCH} && \
+  wget -qO /usr/bin/tpl https://github.com/jitsi/tpl/releases/download/v1.4.0/tpl-linux-${TPL_ARCH} && \
   chmod 755 /usr/bin/tpl && \
   mkdir /tmp/s6 && \
   wget -qO /tmp/s6/s6-overlay-${S6_ARCH}.tar.gz \
