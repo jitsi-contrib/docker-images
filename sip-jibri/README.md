@@ -127,7 +127,8 @@ environment variables:
 
 ```bash
 -e SIP_ID='jitsi <sip:1001@sip.mydomain.corp>' \
--e SIP_REGISTRAR='sip:sip.mydomain.corp' \
+-e SIP_CONTACT='<sip:1001@sip.mydomain.corp;transport=tcp>' \
+-e SIP_REGISTRAR='sip:sip.mydomain.corp;transport=tcp' \
 -e SIP_REALM='*' \
 -e SIP_USERNAME=1001 \
 -e SIP_PASSWORD=mysippassword \
