@@ -13,7 +13,7 @@ RUN \
   export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
-    build-essential git ca-certificates \
+    build-essential git ca-certificates wget \
     libv4l-dev libsdl2-dev libavcodec-dev libavdevice-dev libavfilter-dev \
     libavformat-dev libavutil-dev libswscale-dev libasound2-dev libopus-dev \
     libvpx-dev libssl-dev && \
