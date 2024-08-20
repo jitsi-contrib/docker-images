@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # builder
 # ------------------------------------------------------------------------------
-FROM debian:bookworm-slim as builder
+FROM debian:trixie-slim as builder
 
 ARG PROJECT_REPO=https://github.com/jitsi/pjproject
 ARG PROJECT_BRANCH=jibri-2.13-dev1
@@ -25,7 +25,7 @@ RUN \
 # ------------------------------------------------------------------------------
 # sip-jibri
 # ------------------------------------------------------------------------------
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
