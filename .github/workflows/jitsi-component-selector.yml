@@ -1,5 +1,7 @@
 name: jitsi-component-selector
 
+# last manual run: 20240823 - update the base nodejs container
+
 on:
   push:
     branches:
